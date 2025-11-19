@@ -47,6 +47,17 @@ Debug builds should be built with the following arguments:
 ### Stack size
 For builds making excessive use of `_alloca()`, consider giving them a bigger stack size.
 
+## Reproducibility
+
+For the sake of reproducibility, only use compilers that are part of the GNU compiler set (gcc/g++/ld/nasm).
+
+### UB
+
+UB (Undefined Behaviour) is a scary topic for everyone.
+You **shouldn't avoid it**. You **should understand what happens when you run different mechanisms that cause 'UB'**, and you should **avoid behaviour that is unpredictable/unexpected/error-prone/unreproducible.
+
+<!--
+
 ## Compiler Optimizations
 
 Not all of the following optimization flags have to be used, but they are valid options.
@@ -159,3 +170,5 @@ For maximum optimization potential across modern systems, combine all major opti
 - This configuration activates all major optimization subsystems (PGO, ThinLTO, interprocedural analysis, and CPU specialization).
 - Not suitable for debug builds or applications needing strict IEEE floating-point reproducibility.
 - Gains vary with workload (commonly +20–50% over `-O3`).
+
+-->
