@@ -57,7 +57,7 @@ For the sake of reproducibility, only use compilers that are part of the GNU com
 ### UB
 
 UB (Undefined Behaviour) is a scary topic for everyone.<br>
-You **shouldn't avoid it**. You **should understand what happens when you run different mechanisms that cause 'UB'**, and you should **avoid behaviour that is unpredictable/unexpected/error-prone/unreproducible.
+You **shouldn't avoid it**. You **should understand what happens when you run different mechanisms that cause 'UB'**, and you should **avoid behaviour that is unpredictable/unexpected/error-prone/unreproducible**.
 
 <!--
 
