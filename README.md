@@ -24,31 +24,47 @@ Identation should be done using TABS.
 Files should be formatted with UTF-8 and LF, regardless of operating system. Only exception is Powershell scripts, which should use UTF-8+BOM and CRLF.
 
 ### Pointer Management (1)
-Avoid using smart pointers unless custom management becomes too complex.
+Avoid smart pointers unless:
+* An external library requires them
+* Normal memory management becomes difficult or too complex
+* You are working with extremely large volumes of data, where manual memory management becomes close to impossible, or difficult
 
 ### Pointer Management (2)
-Use `alloca()` whenever you need to store basic types such as integers, but don't know EXACTLY how many there are. Make sure to never allocate too much memory with _alloca() or you'll run into Stack overflow errors. If you get a stack overflow error, always take a look at your _alloca() calls and try logging the amount of memory you allocate each time and in total on each line.<br>
+Use `alloca()` whenever you need to store basic types such as integers, but don't know EXACTLY how many there are. Make sure to never allocate too much memory with alloca() or you'll run into Stack overflow errors. If you get a stack overflow error, always take a look at your alloca() calls and try logging the amount of memory you allocate each time and in total on each line.<br>
 Use `malloc()` (or `new`) whenever you can't use `alloca()` (long loops, large memory, types that have deconstructors).
 
 ### Pointer Management (3)
 Store pointers as:
   * `char*`: for pointer arithmetic
   * `void*`: for storage, or function input/output
-  * `T*`: function input/output, or internal type conversions
+  * `T*`: function input/output, internal type conversions, storage or pointer arithmetic
 
 ## Building
 ### Position-Independent
 All output binaries should be as position-independent as possible, regardless of usecase. (Excluding kernel-level programming, or binaries where size is a priority) <br>
 On Linux, position-independent binaries should be made with the use of `-fPIC` or `-fPIE -pie` flags for g++. <br>
-On Windows, position-independent binaries should be made ith the use of `-O2 -fno-common -Wl,--dynamicbase -Wl,--high-entropy-va -Wl,--nxcompat` flags for g++. Because Windows uses PE instead of ELF, this is the closest you can get to truly position-independent Windows code.<br>
+<!-- On Windows, position-independent binaries should be made ith the use of `-O2 -fno-common -Wl,--dynamicbase -Wl,--high-entropy-va -Wl,--nxcompat` flags for g++. Because Windows uses PE instead of ELF, this is the closest you can get to truly position-independent Windows code.<br> -->
 
 ### Debug Builds
 Debug builds should be built with the following arguments:
 * Linux: `g++ -g -O1 -fPIE -pie` or `g++ -g -O1 -fPIC`
 * Windows: `g++ -g -O1 -fno-common, -Wl,--high-entropy-va`
+Production builds should be built with the following arguments:
+* Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`
+* Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`
 
 ### Stack size
 For builds making excessive use of `alloca()`, consider giving them a bigger stack size.
+
+## Naming
+Naming conventions that should be used:
+* **Variables:** snake_case
+* **Top-Level Constants:** SCREAMING_SNAKE_CASE
+* **Functions:** snake_case
+* **Classes:** camelCase
+* **Macros:** SCREAMING_SNAKE_CASE
+
+Temporary variables must start with an underscore, or end in `_tmp`.
 
 ## Reproducibility
 
@@ -57,7 +73,8 @@ For the sake of reproducibility, only use compilers that are part of the GNU com
 ### UB
 
 UB (Undefined Behaviour) is a scary topic for everyone.<br>
-You **shouldn't avoid it**. You **should understand what happens when you run different mechanisms that cause 'UB'**, and you should **avoid behaviour that is unpredictable/unexpected/error-prone/unreproducible**.
+You **shouldn't avoid it**. You **should understand what happens when you run different mechanisms that cause 'UB'**, and you should **avoid behaviour that is unpredictable/unexpected/error-prone/unreproducible**.<br>
+Understanding the compiler is always better than fearing the compiler.
 
 <!--
 
