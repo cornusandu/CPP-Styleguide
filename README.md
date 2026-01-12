@@ -31,7 +31,7 @@ Avoid smart pointers unless:
 
 ### Pointer Management (2)
 Use `alloca()` whenever you need to store basic types such as integers, but don't know EXACTLY how many there are. Make sure to never allocate too much memory with alloca() or you'll run into Stack overflow errors. If you get a stack overflow error, always take a look at your alloca() calls and try logging the amount of memory you allocate each time and in total on each line.<br>
-Use `malloc()` (or `new`) whenever you can't use `alloca()` (long loops, large memory, types that have deconstructors).
+Use `malloc()` (or, better yet, `new`) whenever you can't use `alloca()` (long loops, large memory, types that have deconstructors).
 
 ### Pointer Management (3)
 Store pointers as:
@@ -47,11 +47,11 @@ On Linux, position-independent binaries should be made with the use of `-fPIC` o
 
 ### Debug Builds
 Debug builds should be built with the following arguments:
-* Linux: `g++ -g -O1 -fPIE -pie` or `g++ -g -O1 -fPIC`
-* Windows: `g++ -g -O1 -fno-common, -Wl,--high-entropy-va`
+* Linux: `g++ -g -O1 -fPIE -pie` or `g++ -g -O1 -fPIC -fsanitize=undefined -Wshadow`
+* Windows: `g++ -g -O1 -fno-common, -Wl,--high-entropy-va -fsanitize=undefined -Wshadow`
 Production builds should be built with the following arguments:
-* Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`
-* Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`
+* Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
+* Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
 
 ### Stack size
 For builds making excessive use of `alloca()`, consider giving them a bigger stack size.
