@@ -50,8 +50,8 @@ Debug builds should be built with the following arguments:
 * Linux: `g++ -g -O1 -fPIE -pie` or `g++ -g -O1 -fPIC -fsanitize=undefined -Wshadow`
 * Windows: `g++ -g -O1 -fno-common, -Wl,--high-entropy-va -fsanitize=undefined -Wshadow`
 Production builds should be built with the following arguments:
-* Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
-* Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, ` -D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
+* Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
+* Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
 
 ### Stack size
 For builds making excessive use of `alloca()`, consider giving them a bigger stack size.
