@@ -5,7 +5,7 @@ This is my own styleguide, meant mainly for me. You don't have to agree or follo
 ### Function Braces (1)
 The opening brace of a function should be placed on the same line as the function definition, separated by a space from the class definition. The closing brace should be placed on the line following the last line of the function.
 ```cpp
-void main() {
+int main() {
     // do something
     return 0;
 }
@@ -14,14 +14,23 @@ void main() {
 ### Function Braces (2)
 Braces should not be used for a function if you are only declaring the signature.
 ```cpp
-void main();
+int main();
 ```
+
+### Forward-Declarations (1)
+Always forward-declare functions that you MAY need later at the start of a file. It takes a few seconds, and saves you some time later.
+
+### Forward-Declarations (2)
+Always use `extern` when forward-declaring a function that is NOT defined in the same file. This informs the reader that the function is defined somewhere else.
+
+### Forward-Declarations (3)
+Always use `extern` when forward-declaring a variable in C++, as just `T variable;` may initialise it.
 
 ### Identation (1)
 Identation should be done using TABS.
 
 ### File Format (1)
-Files should be formatted with UTF-8 and LF, regardless of operating system. Only exception is Powershell scripts, which should use UTF-8+BOM and CRLF.
+Files should be formatted with UTF-8 and LF, regardless of operating system. Only exception is Powershell scripts, which should use UTF-16+BOM and CRLF.
 
 ### Pointer Management (1)
 Avoid smart pointers unless:
@@ -30,14 +39,13 @@ Avoid smart pointers unless:
 * You are working with extremely large volumes of data, where manual memory management becomes close to impossible, or difficult
 
 ### Pointer Management (2)
-Use `alloca()` whenever you need to store basic types such as integers, but don't know EXACTLY how many there are. Make sure to never allocate too much memory with alloca() or you'll run into Stack overflow errors. If you get a stack overflow error, always take a look at your alloca() calls and try logging the amount of memory you allocate each time and in total on each line.<br>
-Use `malloc()` (or, better yet, `new`) whenever you can't use `alloca()` (long loops, large memory, types that have deconstructors).
+Store pointers as:
+  * `unsigned char*`: for pointer arithmetic
+  * `void*`: for storage, or function input/output (or pointer arithmetic, on toolchains and platforms where `sizeof(void) == 1`, although this is discouraged)
+  * `T*`: function input/output, internal type conversions, storage, or pointer arithmetic
 
 ### Pointer Management (3)
-Store pointers as:
-  * `char*`: for pointer arithmetic
-  * `void*`: for storage, or function input/output
-  * `T*`: function input/output, internal type conversions, storage or pointer arithmetic
+Always use `unsigned char*` instead of `char*` (or `signed char*`, if you for some reason need it to be signed).
 
 ## Building
 ### Position-Independent
@@ -53,6 +61,8 @@ Production builds should be built with the following arguments:
 * Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
 * Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
 
+Please note that `-Ofast` introduces aggressive optimization that my slightly alter floating point math, and may break some things/
+
 ### Stack size
 For builds making excessive use of `alloca()`, consider giving them a bigger stack size.
 
@@ -61,7 +71,7 @@ Naming conventions that should be used:
 * **Variables:** snake_case
 * **Top-Level Constants:** SCREAMING_SNAKE_CASE
 * **Functions:** snake_case
-* **Classes:** camelCase
+* **Classes:** camelCase, PascalCase, or snake_case_t (snake_case ending with `_t`)
 * **Macros:** SCREAMING_SNAKE_CASE
 
 Temporary variables must start with an underscore, or end in `_tmp`.
