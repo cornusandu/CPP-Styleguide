@@ -59,10 +59,26 @@ Debug builds should be built with the following arguments:
 * Windows: `g++ -g -O1 -fno-common, -Wl,--high-entropy-va -fsanitize=undefined -Wshadow`
 
 Production builds should be built with the following arguments:
-* Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
-* Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3 -Wshadow`
+* Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`, `-Werror=shadow`, `-Wextra`, `-fwrapv`, `-fstack-clash-protection`, `-Werror=return-type`, `-fno-strict-aliasing`, `-fno-strict-overflow`
+* Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`, `-Werror=shadow`, `-Wextra`, `-fwrapv`, `-fstack-clash-protection`, `-Werror=return-type`, `-fno-strict-aliasing`, `-fno-strict-overflow`
 
 Please note that `-Ofast` introduces aggressive optimization that my slightly alter floating point math, and may break some things/
+
+We also recommend the following flags, to forcefully prevent dangerous behaviour, as well as unused code:
+* `-Werror=uninitialized`
+* `-Werror=maybe-uninitialized`
+* `-Werror=use-after-free`
+* `-Werror=use-after-scope`
+* `-Werror=free-nonheap-object`
+* `-Werror=double-promotion`
+* `-Wmisleading-indentation`
+* `-Werror=unused-parameter`
+* `-Werror=unused-variable`
+* `-Werror=sequence-point`
+* `-Werror=stringop-overread`
+* `-Werror=format-security`
+* `-Werror=array-bounds`
+* `-Wstringop-overflow`
 
 ### Stack size
 For builds making excessive use of `alloca()`, consider giving them a bigger stack size.
