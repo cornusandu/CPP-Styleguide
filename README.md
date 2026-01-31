@@ -84,7 +84,7 @@ We also recommend the following flags, to forcefully prevent dangerous behaviour
 
 > [!TIP]
 >
-> With the following flags, the presence of any unused parameters will throw an error. Use the following macro to surpress said errors:
+> With the following flags, the presence of any unused parameters will throw an error. Use the following macro to suppress said errors:
 > ```cpp
 > #define UNUSED(x) ((void)(x))
 > ```
