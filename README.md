@@ -62,9 +62,8 @@ Production builds should be built with the following arguments:
 * Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`, `-Werror=shadow`, `-Wextra`, `-fwrapv`, `-fstack-clash-protection`, `-Werror=return-type`, `-fno-strict-aliasing`, `-fno-strict-overflow`
 * Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`, `-Werror=shadow`, `-Wextra`, `-fwrapv`, `-fstack-clash-protection`, `-Werror=return-type`, `-fno-strict-aliasing`, `-fno-strict-overflow`
 
-> [!CAUTION]
->
-> Please note that `-Ofast` introduces aggressive optimization that my slightly alter floating point math, and may break some things/
+!!! caution
+    Please note that `-Ofast` introduces aggressive optimization that my slightly alter floating point math, and may break some things/
 
 We also recommend the following flags, to forcefully prevent dangerous behaviour, as well as unused code:
 * `-Werror=uninitialized`
@@ -82,22 +81,21 @@ We also recommend the following flags, to forcefully prevent dangerous behaviour
 * `-Werror=array-bounds`
 * `-Wstringop-overflow`
 
-> [!TIP]
->
-> With the following flags, the presence of any unused parameters will throw an error. Use the following macro to suppress said errors:
-> ```cpp
-> #define UNUSED(x) ((void)(x))
-> ```
->
-> Example:
-> ```cpp
-> void output(int number, int number2) {
->    UNUSED(number2);
->    std::cout << number;
-> }
-> ```
-> 
-> However, only do this if you plan on shortly starting to use the parameter in question, or have no choice but to keep it.
+!!! tip
+    With the following flags, the presence of any unused parameters will throw an error. Use the following macro to suppress said errors:
+
+    ```cpp
+    #define UNUSED(x) ((void)(x))
+    ```   
+    Example:
+    ```cpp
+    void output(int number, int number2) {
+       UNUSED(number2);
+       std::cout << number;
+    }
+    ```
+
+    However, only do this if you plan on shortly starting to use the parameter in question, or have no choice but to keep it.
 
 ### Stack size
 For builds making excessive use of `alloca()`, consider giving them a bigger stack size.
@@ -115,12 +113,6 @@ Temporary variables must start with an underscore, or end in `_tmp`.
 ## Reproducibility
 
 For the sake of reproducibility, only use compilers that are part of the GNU compiler set (gcc/g++/ld/nasm).
-
-### UB
-
-UB (Undefined Behaviour) is a scary topic for everyone.<br>
-You **shouldn't avoid it**. You **should understand what happens when you run different mechanisms that cause 'UB'**, and you should **avoid behaviour that is unpredictable/unexpected/error-prone/unreproducible**.<br>
-Understanding the compiler is always better than fearing the compiler.
 
 <!--
 

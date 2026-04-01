@@ -1,0 +1,989 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>C++ Style Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c-styleguide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="C++ Style Guide" class="md-header__button md-logo" aria-label="C++ Style Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            C++ Style Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C++ Styleguide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="C++ Style Guide" class="md-nav__button md-logo" aria-label="C++ Style Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    C++ Style Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ Styleguide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ Styleguide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#disclaimer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disclaimer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-braces-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Braces (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-braces-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Braces (2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-declarations-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward-Declarations (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-declarations-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward-Declarations (2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-declarations-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward-Declarations (3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identation-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identation (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-format-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Format (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointer-management-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointer Management (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointer-management-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointer Management (2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointer-management-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointer Management (3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#position-independent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Position-Independent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Builds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack size
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#disclaimer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disclaimer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-braces-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Braces (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-braces-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Braces (2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-declarations-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward-Declarations (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-declarations-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward-Declarations (2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-declarations-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward-Declarations (3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identation-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identation (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-format-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Format (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointer-management-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointer Management (1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointer-management-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointer Management (2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointer-management-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointer Management (3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#position-independent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Position-Independent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Builds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack size
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="c-styleguide"><a href="https://cornusandu.github.io/CPP-Styleguide/">C++ Styleguide</a></h1>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>This is my own styleguide, meant mainly for me. You don't have to agree or follow anything that's written here.</p>
+<h2 id="formatting">Formatting</h2>
+<h3 id="function-braces-1">Function Braces (1)</h3>
+<p>The opening brace of a function should be placed on the same line as the function definition, separated by a space from the class definition. The closing brace should be placed on the line following the last line of the function.
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// do something</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="function-braces-2">Function Braces (2)</h3>
+<p>Braces should not be used for a function if you are only declaring the signature.
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">();</span>
+</code></pre></div></p>
+<h3 id="forward-declarations-1">Forward-Declarations (1)</h3>
+<p>Always forward-declare functions that you MAY need later at the start of a file. It takes a few seconds, and saves you some time later.</p>
+<h3 id="forward-declarations-2">Forward-Declarations (2)</h3>
+<p>Always use <code>extern</code> when forward-declaring a function that is NOT defined in the same file. This informs the reader that the function is defined somewhere else.</p>
+<h3 id="forward-declarations-3">Forward-Declarations (3)</h3>
+<p>Always use <code>extern</code> when forward-declaring a variable in C++, as just <code>T variable;</code> may initialise it.</p>
+<h3 id="identation-1">Identation (1)</h3>
+<p>Identation should be done using TABS.</p>
+<h3 id="file-format-1">File Format (1)</h3>
+<p>Files should be formatted with UTF-8 and LF, regardless of operating system. Only exception is Powershell scripts, which should use UTF-16+BOM and CRLF.</p>
+<h3 id="pointer-management-1">Pointer Management (1)</h3>
+<p>Avoid smart pointers unless:
+* An external library requires them
+* Normal memory management becomes difficult or too complex
+* You are working with extremely large volumes of data, where manual memory management becomes close to impossible, or difficult</p>
+<h3 id="pointer-management-2">Pointer Management (2)</h3>
+<p>Store pointers as:
+  * <code>unsigned char*</code>: for pointer arithmetic
+  * <code>void*</code>: for storage, or function input/output (or pointer arithmetic, on toolchains and platforms where <code>sizeof(void) == 1</code>, although this is discouraged)
+  * <code>T*</code>: function input/output, internal type conversions, storage, or pointer arithmetic</p>
+<h3 id="pointer-management-3">Pointer Management (3)</h3>
+<p>Always use <code>unsigned char*</code> instead of <code>char*</code> (or <code>signed char*</code>, if you for some reason need it to be signed).</p>
+<h2 id="building">Building</h2>
+<h3 id="position-independent">Position-Independent</h3>
+<p>All output binaries should be as position-independent as possible, regardless of usecase. (Excluding kernel-level programming, or binaries where size is a priority) <br>
+On Linux, position-independent binaries should be made with the use of <code>-fPIC</code> or <code>-fPIE -pie</code> flags for g++. <br></p>
+<!-- On Windows, position-independent binaries should be made ith the use of `-O2 -fno-common -Wl,--dynamicbase -Wl,--high-entropy-va -Wl,--nxcompat` flags for g++. Because Windows uses PE instead of ELF, this is the closest you can get to truly position-independent Windows code.<br> -->
+
+<h3 id="debug-builds">Debug Builds</h3>
+<p>Debug builds should be built with the following arguments:
+* Linux: <code>g++ -g -O1 -fPIE -pie</code> or <code>g++ -g -O1 -fPIC -fsanitize=undefined -Wshadow</code>
+* Windows: <code>g++ -g -O1 -fno-common, -Wl,--high-entropy-va -fsanitize=undefined -Wshadow</code></p>
+<p>Production builds should be built with the following arguments:
+* Linux: <code>-O3</code>/<code>-Ofast</code>, <code>-fstack-protector-strong</code>/<code>-fstack-protector-all</code>, <code>-fPIE -pie</code>/<code>-fPIC</code>, <code>-fno-delete-null-pointer-checks</code>, <code>-Wtrampolines</code>, <code>-D_FORTIFY_SOURCE=2</code>/<code>-D_FORTIFY_SOURCE=3</code>, <code>-Werror=shadow</code>, <code>-Wextra</code>, <code>-fwrapv</code>, <code>-fstack-clash-protection</code>, <code>-Werror=return-type</code>, <code>-fno-strict-aliasing</code>, <code>-fno-strict-overflow</code>
+* Windows: <code>-O3</code>/<code>-Ofast</code>, <code>-fstack-protector-strong</code>/<code>-fstack-protector-all</code>, <code>-fno-delete-null-pointer-checks</code>, <code>-Wtrampolines</code>, <code>-D_FORTIFY_SOURCE=2</code>/<code>-D_FORTIFY_SOURCE=3</code>, <code>-Werror=shadow</code>, <code>-Wextra</code>, <code>-fwrapv</code>, <code>-fstack-clash-protection</code>, <code>-Werror=return-type</code>, <code>-fno-strict-aliasing</code>, <code>-fno-strict-overflow</code></p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Please note that <code>-Ofast</code> introduces aggressive optimization that my slightly alter floating point math, and may break some things/</p>
+</div>
+<p>We also recommend the following flags, to forcefully prevent dangerous behaviour, as well as unused code:
+* <code>-Werror=uninitialized</code>
+* <code>-Werror=maybe-uninitialized</code>
+* <code>-Werror=use-after-free</code>
+* <code>-Werror=use-after-scope</code>
+* <code>-Werror=free-nonheap-object</code>
+* <code>-Werror=double-promotion</code>
+* <code>-Wmisleading-indentation</code>
+* <code>-Werror=unused-parameter</code>
+* <code>-Werror=unused-variable</code>
+* <code>-Werror=sequence-point</code>
+* <code>-Werror=stringop-overread</code>
+* <code>-Werror=format-security</code>
+* <code>-Werror=array-bounds</code>
+* <code>-Wstringop-overflow</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>With the following flags, the presence of any unused parameters will throw an error. Use the following macro to suppress said errors:
+<div class="highlight"><pre><span></span><code><span class="cp">#define UNUSED(x) ((void)(x))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">output</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">number2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">UNUSED</span><span class="p">(</span><span class="n">number2</span><span class="p">);</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Example:</p>
+<p>However, only do this if you plan on shortly starting to use the parameter in question, or have no choice but to keep it.</p>
+</div>
+<h3 id="stack-size">Stack size</h3>
+<p>For builds making excessive use of <code>alloca()</code>, consider giving them a bigger stack size.</p>
+<h2 id="naming">Naming</h2>
+<p>Naming conventions that should be used:
+* <strong>Variables:</strong> snake_case
+* <strong>Top-Level Constants:</strong> SCREAMING_SNAKE_CASE
+* <strong>Functions:</strong> snake_case
+* <strong>Classes:</strong> camelCase, PascalCase, or snake_case_t (snake_case ending with <code>_t</code>)
+* <strong>Macros:</strong> SCREAMING_SNAKE_CASE</p>
+<p>Temporary variables must start with an underscore, or end in <code>_tmp</code>.</p>
+<h2 id="reproducibility">Reproducibility</h2>
+<p>For the sake of reproducibility, only use compilers that are part of the GNU compiler set (gcc/g++/ld/nasm).</p>
+<h3 id="ub">UB</h3>
+<p>UB (Undefined Behaviour) is a scary topic for everyone.<br>
+You <strong>shouldn't avoid it</strong>. You <strong>should understand what happens when you run different mechanisms that cause 'UB'</strong>, and you should <strong>avoid behaviour that is unpredictable/unexpected/error-prone/unreproducible</strong>.<br>
+Understanding the compiler is always better than fearing the compiler.</p>
+<!--
+
+## Compiler Optimizations
+
+Not all of the following optimization flags have to be used, but they are valid options.
+
+### 1. Use `-Ofast`
+
+`-Ofast` enables all optimizations from `-O3` plus aggressive transformations that may violate strict IEEE or ISO compliance rules. It includes `-ffast-math`, allowing algebraic simplifications and less strict floating-point semantics.
+
+**Command:**
+`g++ -Ofast your_code.cpp -o your_program`
+
+**Additional Enhancements:**
+- Combine with strict aliasing and pointer analysis for slightly improved performance:
+  `-Ofast -fipa-pta -fipa-cp-clone`
+- On Linux or macOS, consider linker optimizations:
+  `-Wl,--icf=all -Wl,--gc-sections -Wl,-O2`
+- On Windows (MinGW/MSYS2), use:
+  `-Wl,--enable-icf -Wl,--gc-sections -Wl,-O2`
+
+---
+
+### 2. Profile-Guided Optimization (PGO)
+
+PGO uses runtime profiling data to guide the compiler’s optimization decisions, improving instruction layout, branch prediction, and cache locality.
+
+**Step 1 – Instrument the program**
+`g++ -O3 -fprofile-generate your_code.cpp -o your_program_gen`
+
+**Step 2 – Run with representative data**
+`./your_program_gen <test_input>`
+
+**Step 3 – Recompile using the profile data**
+`g++ -O3 -fprofile-use -fprofile-correction your_code.cpp -o your_program_pgo`
+
+**Alternative (Linux only):**
+Use automatic feedback from performance data with AutoFDO:
+`g++ -O3 -fauto-profile=perf.data your_code.cpp -o your_program_autofdo`
+
+**Notes:**
+- Always use realistic workloads for profiling to ensure accurate branch and cache behavior.
+- Combine with LTO for the best results (see below).
+- `-fprofile-correction` corrects incomplete or mismatched profiling data.
+
+---
+
+### 3. Link-Time Optimization (LTO)
+
+LTO enables whole-program optimization across multiple translation units. It allows interprocedural inlining, devirtualization, and dead code elimination at link time.
+
+**Standard LTO:**
+`g++ -O3 -flto your_code.cpp -o your_program`
+
+**ThinLTO (faster linking, similar benefits):**
+`g++ -O3 -flto=thin your_code.cpp -o your_program`
+
+**PGO + LTO Combined:**
+`g++ -O3 -flto -fprofile-use -fipa-pta -fdevirtualize-at-ltrans your_code.cpp -o your_program`
+
+**Advantages:**
+- Interprocedural optimization across files.
+- Improved code locality and smaller binaries.
+- `-fdevirtualize-at-ltrans` and `-fipa-pta` improve pointer and call devirtualization analysis.
+- On Linux/macOS, add linker optimizations:
+  `-Wl,--gc-sections -Wl,--icf=all -Wl,-O2`
+- On Windows (MinGW/MSYS2), use:
+  `-Wl,--enable-icf -Wl,--gc-sections -Wl,-O2`
+
+---
+
+### 4. Target-Specific Optimizations
+
+Optimize code generation for the specific CPU architecture to leverage advanced instruction sets (SSE, AVX, AVX2, AVX-512, etc.).
+
+**Command:**
+`g++ -O3 -march=native -mtune=native`
+
+**Examples:**
+- For Intel CPUs:
+  `-march=skylake-avx512` or `-march=haswell`
+- For AMD CPUs:
+  `-march=znver4`
+- For Apple Silicon (Clang):
+  `-mcpu=apple-m1`
+- For ARM systems:
+  `-march=armv8-a+simd`
+
+**Additional Flags:**
+- `-fprefetch-loop-arrays` – enable prefetching for loop data (Linux/macOS only).
+- `-funroll-all-loops` – unroll all loops aggressively (caution: larger binaries).
+- `-frename-registers` – improve register allocation in tight numeric loops.
+
+**Notes:**
+- `-march=native` automatically detects and enables all supported features on the build host.
+- For portable binaries, explicitly specify an architecture instead of `native`.
+
+---
+
+### 6. Combine All Advanced Optimizations
+
+For maximum optimization potential across modern systems, combine all major optimizations, profile-guided feedback, LTO, and CPU targeting.
+
+**Command (Linux/macOS):**
+`g++ -Ofast -ffast-math -funsafe-math-optimizations -fno-trapping-math -finline-functions -fno-math-errno -fivopts -faggressive-loop-optimizations -flto=thin -fprofile-use -fprofile-correction -fipa-pta -fdevirtualize-at-ltrans -march=native -mtune=native -funroll-loops -fomit-frame-pointer -fprefetch-loop-arrays -Wl,--icf=all -Wl,--gc-sections -Wl,-O2 your_code.cpp -o your_program`
+
+**Command (Windows – MinGW/MSYS2):**
+`g++ -Ofast -ffast-math -funsafe-math-optimizations -fno-trapping-math -finline-functions -fno-math-errno -fivopts -faggressive-loop-optimizations -flto=thin -fprofile-use -fprofile-correction -fipa-pta -fdevirtualize-at-ltrans -march=native -mtune=native -funroll-loops -fomit-frame-pointer -Wl,--enable-icf -Wl,--gc-sections -Wl,-O2 your_code.cpp -o your_program.exe`
+
+**Notes:**
+- Use `-fauto-profile=perf.data` on Linux for automatic profile feedback instead of manual PGO.
+- This configuration activates all major optimization subsystems (PGO, ThinLTO, interprocedural analysis, and CPU specialization).
+- Not suitable for debug builds or applications needing strict IEEE floating-point reproducibility.
+- Gains vary with workload (commonly +20–50% over `-O3`).
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

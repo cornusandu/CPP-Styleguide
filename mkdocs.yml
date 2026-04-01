@@ -1,0 +1,12 @@
+site_name: C++ Style Guide
+
+theme:
+  name: material
+
+plugins:
+  - include-markdown
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
