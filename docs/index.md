@@ -108,7 +108,7 @@ For builds making excessive use of `alloca()`, consider giving them a bigger sta
 ## Naming
 Naming conventions that should be used:
 
-* **Variables:** snake_case
+* **Variables:** snake_case or camelCase
 * **Top-Level Constants:** SCREAMING_SNAKE_CASE
 * **Functions:** snake_case
 * **Classes:** camelCase, PascalCase, or snake_case_t (snake_case ending with `_t`)
