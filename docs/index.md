@@ -34,15 +34,17 @@ Files should be formatted with UTF-8 and LF, regardless of operating system. Onl
 
 ### Pointer Management (1)
 Avoid smart pointers unless:
+
 * An external library requires them
 * Normal memory management becomes difficult or too complex
 * You are working with extremely large volumes of data, where manual memory management becomes close to impossible, or difficult
 
 ### Pointer Management (2)
 Store pointers as:
-  * `unsigned char*`: for pointer arithmetic
-  * `void*`: for storage, or function input/output (or pointer arithmetic, on toolchains and platforms where `sizeof(void) == 1`, although this is discouraged)
-  * `T*`: function input/output, internal type conversions, storage, or pointer arithmetic
+
+* `unsigned char*`: for pointer arithmetic
+* `void*`: for storage, or function input/output (or pointer arithmetic, on toolchains and platforms where `sizeof(void) == 1`, although this is discouraged)
+* `T*`: function input/output, internal type conversions, storage, or pointer arithmetic
 
 ### Pointer Management (3)
 Always use `unsigned char*` instead of `char*` (or `signed char*`, if you for some reason need it to be signed).
@@ -55,10 +57,12 @@ On Linux, position-independent binaries should be made with the use of `-fPIC` o
 
 ### Debug Builds
 Debug builds should be built with the following arguments:
+
 * Linux: `g++ -g -O1 -fPIE -pie` or `g++ -g -O1 -fPIC -fsanitize=undefined -Wshadow`
 * Windows: `g++ -g -O1 -fno-common, -Wl,--high-entropy-va -fsanitize=undefined -Wshadow`
 
 Production builds should be built with the following arguments:
+
 * Linux: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fPIE -pie`/`-fPIC`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`, `-Werror=shadow`, `-Wextra`, `-fwrapv`, `-fstack-clash-protection`, `-Werror=return-type`, `-fno-strict-aliasing`, `-fno-strict-overflow`
 * Windows: `-O3`/`-Ofast`, `-fstack-protector-strong`/`-fstack-protector-all`, `-fno-delete-null-pointer-checks`, `-Wtrampolines`, `-D_FORTIFY_SOURCE=2`/`-D_FORTIFY_SOURCE=3`, `-Werror=shadow`, `-Wextra`, `-fwrapv`, `-fstack-clash-protection`, `-Werror=return-type`, `-fno-strict-aliasing`, `-fno-strict-overflow`
 
@@ -66,6 +70,7 @@ Production builds should be built with the following arguments:
     Please note that `-Ofast` introduces aggressive optimization that my slightly alter floating point math, and may break some things/
 
 We also recommend the following flags, to forcefully prevent dangerous behaviour, as well as unused code:
+
 * `-Werror=uninitialized`
 * `-Werror=maybe-uninitialized`
 * `-Werror=use-after-free`
@@ -102,6 +107,7 @@ For builds making excessive use of `alloca()`, consider giving them a bigger sta
 
 ## Naming
 Naming conventions that should be used:
+
 * **Variables:** snake_case
 * **Top-Level Constants:** SCREAMING_SNAKE_CASE
 * **Functions:** snake_case
