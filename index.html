@@ -279,17 +279,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#forward-declarations-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Forward-Declarations (3)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#identation-1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -523,17 +512,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#forward-declarations-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Forward-Declarations (3)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#identation-1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -698,13 +676,11 @@
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">();</span>
 </code></pre></div></p>
 <h3 id="forward-declarations-1">Forward-Declarations (1)</h3>
-<p>Always forward-declare functions that you MAY need later at the start of a file. It takes a few seconds, and saves you some time later.</p>
-<h3 id="forward-declarations-2">Forward-Declarations (2)</h3>
 <p>Always use <code>extern</code> when forward-declaring a function that is NOT defined in the same file. This informs the reader that the function is defined somewhere else.</p>
-<h3 id="forward-declarations-3">Forward-Declarations (3)</h3>
+<h3 id="forward-declarations-2">Forward-Declarations (2)</h3>
 <p>Always use <code>extern</code> when forward-declaring a variable in C++, as just <code>T variable;</code> may initialise it.</p>
 <h3 id="identation-1">Identation (1)</h3>
-<p>Identation should be done using TABS.</p>
+<p>Identation should be done using TABS (viewed as 4-space tabs).</p>
 <h3 id="file-format-1">File Format (1)</h3>
 <p>Files should be formatted with UTF-8 and LF, regardless of operating system. Only exception is Powershell scripts, which should use UTF-16+BOM and CRLF.</p>
 <h3 id="pointer-management-1">Pointer Management (1)</h3>
@@ -788,122 +764,6 @@ Example:
 <p>Temporary variables must start with an underscore, or end in <code>_tmp</code>.</p>
 <h2 id="reproducibility">Reproducibility</h2>
 <p>For the sake of reproducibility, only use compilers that are part of the GNU compiler set (gcc/g++/ld/nasm).</p>
-<!--
-
-## Compiler Optimizations
-
-Not all of the following optimization flags have to be used, but they are valid options.
-
-### 1. Use `-Ofast`
-
-`-Ofast` enables all optimizations from `-O3` plus aggressive transformations that may violate strict IEEE or ISO compliance rules. It includes `-ffast-math`, allowing algebraic simplifications and less strict floating-point semantics.
-
-**Command:**
-`g++ -Ofast your_code.cpp -o your_program`
-
-**Additional Enhancements:**
-- Combine with strict aliasing and pointer analysis for slightly improved performance:
-  `-Ofast -fipa-pta -fipa-cp-clone`
-- On Linux or macOS, consider linker optimizations:
-  `-Wl,--icf=all -Wl,--gc-sections -Wl,-O2`
-- On Windows (MinGW/MSYS2), use:
-  `-Wl,--enable-icf -Wl,--gc-sections -Wl,-O2`
-
----
-
-### 2. Profile-Guided Optimization (PGO)
-
-PGO uses runtime profiling data to guide the compiler’s optimization decisions, improving instruction layout, branch prediction, and cache locality.
-
-**Step 1 – Instrument the program**
-`g++ -O3 -fprofile-generate your_code.cpp -o your_program_gen`
-
-**Step 2 – Run with representative data**
-`./your_program_gen <test_input>`
-
-**Step 3 – Recompile using the profile data**
-`g++ -O3 -fprofile-use -fprofile-correction your_code.cpp -o your_program_pgo`
-
-**Alternative (Linux only):**
-Use automatic feedback from performance data with AutoFDO:
-`g++ -O3 -fauto-profile=perf.data your_code.cpp -o your_program_autofdo`
-
-**Notes:**
-- Always use realistic workloads for profiling to ensure accurate branch and cache behavior.
-- Combine with LTO for the best results (see below).
-- `-fprofile-correction` corrects incomplete or mismatched profiling data.
-
----
-
-### 3. Link-Time Optimization (LTO)
-
-LTO enables whole-program optimization across multiple translation units. It allows interprocedural inlining, devirtualization, and dead code elimination at link time.
-
-**Standard LTO:**
-`g++ -O3 -flto your_code.cpp -o your_program`
-
-**ThinLTO (faster linking, similar benefits):**
-`g++ -O3 -flto=thin your_code.cpp -o your_program`
-
-**PGO + LTO Combined:**
-`g++ -O3 -flto -fprofile-use -fipa-pta -fdevirtualize-at-ltrans your_code.cpp -o your_program`
-
-**Advantages:**
-- Interprocedural optimization across files.
-- Improved code locality and smaller binaries.
-- `-fdevirtualize-at-ltrans` and `-fipa-pta` improve pointer and call devirtualization analysis.
-- On Linux/macOS, add linker optimizations:
-  `-Wl,--gc-sections -Wl,--icf=all -Wl,-O2`
-- On Windows (MinGW/MSYS2), use:
-  `-Wl,--enable-icf -Wl,--gc-sections -Wl,-O2`
-
----
-
-### 4. Target-Specific Optimizations
-
-Optimize code generation for the specific CPU architecture to leverage advanced instruction sets (SSE, AVX, AVX2, AVX-512, etc.).
-
-**Command:**
-`g++ -O3 -march=native -mtune=native`
-
-**Examples:**
-- For Intel CPUs:
-  `-march=skylake-avx512` or `-march=haswell`
-- For AMD CPUs:
-  `-march=znver4`
-- For Apple Silicon (Clang):
-  `-mcpu=apple-m1`
-- For ARM systems:
-  `-march=armv8-a+simd`
-
-**Additional Flags:**
-- `-fprefetch-loop-arrays` – enable prefetching for loop data (Linux/macOS only).
-- `-funroll-all-loops` – unroll all loops aggressively (caution: larger binaries).
-- `-frename-registers` – improve register allocation in tight numeric loops.
-
-**Notes:**
-- `-march=native` automatically detects and enables all supported features on the build host.
-- For portable binaries, explicitly specify an architecture instead of `native`.
-
----
-
-### 6. Combine All Advanced Optimizations
-
-For maximum optimization potential across modern systems, combine all major optimizations, profile-guided feedback, LTO, and CPU targeting.
-
-**Command (Linux/macOS):**
-`g++ -Ofast -ffast-math -funsafe-math-optimizations -fno-trapping-math -finline-functions -fno-math-errno -fivopts -faggressive-loop-optimizations -flto=thin -fprofile-use -fprofile-correction -fipa-pta -fdevirtualize-at-ltrans -march=native -mtune=native -funroll-loops -fomit-frame-pointer -fprefetch-loop-arrays -Wl,--icf=all -Wl,--gc-sections -Wl,-O2 your_code.cpp -o your_program`
-
-**Command (Windows – MinGW/MSYS2):**
-`g++ -Ofast -ffast-math -funsafe-math-optimizations -fno-trapping-math -finline-functions -fno-math-errno -fivopts -faggressive-loop-optimizations -flto=thin -fprofile-use -fprofile-correction -fipa-pta -fdevirtualize-at-ltrans -march=native -mtune=native -funroll-loops -fomit-frame-pointer -Wl,--enable-icf -Wl,--gc-sections -Wl,-O2 your_code.cpp -o your_program.exe`
-
-**Notes:**
-- Use `-fauto-profile=perf.data` on Linux for automatic profile feedback instead of manual PGO.
-- This configuration activates all major optimization subsystems (PGO, ThinLTO, interprocedural analysis, and CPU specialization).
-- Not suitable for debug builds or applications needing strict IEEE floating-point reproducibility.
-- Gains vary with workload (commonly +20–50% over `-O3`).
-
--->
 
 
 
